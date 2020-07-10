@@ -1,10 +1,11 @@
 import { createStore } from 'redux';
 
-import { createPost, editPost, setFilter } from './actions';
+import { createPost, editPost } from './actions';
 import appReducer from './reducers';
 
 const store = createStore(appReducer);
-const unsubscribe = store.subscribe(() => {
+
+store.subscribe(() => {
   console.log('state changed:', store.getState());
 });
 
@@ -23,7 +24,7 @@ const render = () => {
     root.appendChild(item);
   });
 };
-const stopRender = store.subscribe(render);
+store.subscribe(render);
 
 store.dispatch(createPost('dan', 'hello world'));
 store.dispatch(createPost('des', 'second post'));
