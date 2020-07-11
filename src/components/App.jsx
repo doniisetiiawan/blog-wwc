@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import ConnectedPostList from '../containers/ConnectedPostList';
 import ConnectedFilterList from '../containers/ConnectedFilterList';
 
@@ -14,4 +15,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default hot(App);
