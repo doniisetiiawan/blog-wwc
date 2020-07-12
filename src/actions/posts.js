@@ -37,7 +37,7 @@ export const fetchPostsAndUsers = () => (dispatch) => fetchPosts()(dispatch)
     err.message,
   ));
 
-const _createPost = (user, post) => thunkCreator({
+const _createPost = (token, post) => thunkCreator({
   types: [
     CREATE_POST_REQUEST,
     CREATE_POST_SUCCESS,
@@ -48,27 +48,17 @@ const _createPost = (user, post) => thunkCreator({
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      ...post,
-      user,
-    }),
+    body: JSON.stringify(post),
   }).then((response) => response.json()),
 });
 
-export const createPost = (
-  user,
-  post,
-  doFetchUser = true,
-) => (dispatch) => _createPost(
-  user,
+export const createPost = (token, post) => (dispatch) => _createPost(
+  token,
   post,
 )(dispatch)
-  .then((result) => {
-    if (doFetchUser) {
-      return fetchUser(result.user)(dispatch);
-    }
-  })
+  .then((result) => fetchUser(result.user)(dispatch))
   .catch((err) => console.error('could not create post:', err.message));
 
 export const editPost = (id, post) => ({

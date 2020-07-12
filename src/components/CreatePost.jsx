@@ -33,18 +33,12 @@ export default class CreatePost extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const { users } = this.props;
-    const {
-      username, title, text, category,
-    } = this.state;
-    const doFetchUser = !users.find(
-      (u) => u.username === username,
-    );
-    this.props.createPost(
-      username,
-      { title, text, category },
-      doFetchUser,
-    );
+    const { title, text, category } = this.state;
+    this.props.createPost(this.props.token, {
+      title,
+      text,
+      category,
+    });
     this.setState({
       message: 'Successfully created post!',
     });
