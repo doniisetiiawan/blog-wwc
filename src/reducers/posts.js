@@ -1,7 +1,7 @@
 import {
-  CREATE_POST,
-  EDIT_POST,
+  CREATE_POST_SUCCESS,
   DELETE_POST,
+  EDIT_POST,
   FETCH_POSTS_SUCCESS,
 } from '../actionTypes';
 
@@ -11,13 +11,9 @@ export default function postsReducer(state = [], action) {
       return action.result;
     }
 
-    case CREATE_POST: {
-      const { type, post } = action;
-      const ts = Date.now();
-      return [
-        ...state,
-        { ...post, created: ts, updated: ts },
-      ];
+    case CREATE_POST_SUCCESS: {
+      const { type, result } = action;
+      return [...state, result];
     }
 
     case EDIT_POST: {

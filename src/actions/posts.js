@@ -1,13 +1,15 @@
 import {
+  CREATE_POST_FAILURE,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  DELETE_POST,
+  EDIT_POST,
+  FETCH_POSTS_FAILURE,
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE,
-  CREATE_POST,
-  EDIT_POST,
-  DELETE_POST,
 } from '../actionTypes';
 import { thunkCreator } from './utils';
-import { fetchUsersByUsernames } from './users';
+import { fetchUser, fetchUsersByUsernames } from './users';
 
 export const fetchPosts = () => thunkCreator({
   types: [
@@ -35,25 +37,39 @@ export const fetchPostsAndUsers = () => (dispatch) => fetchPosts()(dispatch)
     err.message,
   ));
 
-export const createPost = (user, post) => {
-  const { title, text, category = 'random' } = post;
-
-  if (!title || !text) {
-    throw new Error(
-      'invalid post, title and text required',
-    );
-  }
-
-  return {
-    type: CREATE_POST,
-    post: {
-      user,
-      title,
-      text,
-      category,
+const _createPost = (user, post) => thunkCreator({
+  types: [
+    CREATE_POST_REQUEST,
+    CREATE_POST_SUCCESS,
+    CREATE_POST_FAILURE,
+  ],
+  promise: fetch('http://localhost:8080/api/posts', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  };
-};
+    body: JSON.stringify({
+      ...post,
+      user,
+    }),
+  }).then((response) => response.json()),
+});
+
+export const createPost = (
+  user,
+  post,
+  doFetchUser = true,
+) => (dispatch) => _createPost(
+  user,
+  post,
+)(dispatch)
+  .then((result) => {
+    if (doFetchUser) {
+      return fetchUser(result.user)(dispatch);
+    }
+  })
+  .catch((err) => console.error('could not create post:', err.message));
 
 export const editPost = (id, post) => ({
   type: EDIT_POST,
