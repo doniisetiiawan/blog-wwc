@@ -4,9 +4,7 @@ import ConnectedPostList from '../containers/ConnectedPostList';
 import ConnectedFilterList from '../containers/ConnectedFilterList';
 import ConnectedLoading from '../containers/ConnectedLoading';
 import ConnectedErrorMessage from '../containers/ConnectedErrorMessage';
-import ConnectedRegistration from '../containers/ConnectedRegistration';
-import ConnectedCreatePost from '../containers/ConnectedCreatePost';
-import ConnectedLogin from '../containers/ConnectedLogin';
+import ConnectedHeader from '../containers/ConnectedHeader';
 
 const App = () => (
   <div>
@@ -17,15 +15,7 @@ const App = () => (
     <div>
       <ConnectedErrorMessage />
     </div>
-    <div>
-      <ConnectedRegistration />
-    </div>
-    <div>
-      <ConnectedLogin />
-    </div>
-    <div>
-      <ConnectedCreatePost />
-    </div>
+    <div><ConnectedHeader /></div>
     <div>
       <ConnectedFilterList />
     </div>
