@@ -4,7 +4,7 @@ import ConnectedPostList from '../containers/ConnectedPostList';
 import ConnectedFilterList from '../containers/ConnectedFilterList';
 import ConnectedLoading from '../containers/ConnectedLoading';
 import ConnectedErrorMessage from '../containers/ConnectedErrorMessage';
-import ConnectedRegistration from '../reducers/ConnectedRegistration';
+import ConnectedRegistration from '../containers/ConnectedRegistration';
 import ConnectedCreatePost from '../containers/ConnectedCreatePost';
 
 const App = () => (
