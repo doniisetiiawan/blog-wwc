@@ -6,6 +6,7 @@ import ConnectedLoading from '../containers/ConnectedLoading';
 import ConnectedErrorMessage from '../containers/ConnectedErrorMessage';
 import ConnectedRegistration from '../containers/ConnectedRegistration';
 import ConnectedCreatePost from '../containers/ConnectedCreatePost';
+import ConnectedLogin from '../containers/ConnectedLogin';
 
 const App = () => (
   <div>
@@ -18,6 +19,9 @@ const App = () => (
     </div>
     <div>
       <ConnectedRegistration />
+    </div>
+    <div>
+      <ConnectedLogin />
     </div>
     <div>
       <ConnectedCreatePost />

@@ -5,6 +5,9 @@ import {
   FETCH_USER_FAILURE,
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
 } from '../actionTypes';
 import { thunkCreator } from './utils';
 
@@ -40,6 +43,21 @@ export const createUser = (username, realname) => thunkCreator({
     body: JSON.stringify({
       username,
       realname,
+    }),
+  }).then((response) => response.json()),
+});
+
+export const login = (username, password) => thunkCreator({
+  types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
+  promise: fetch('http://localhost:8080/api/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password,
     }),
   }).then((response) => response.json()),
 });
