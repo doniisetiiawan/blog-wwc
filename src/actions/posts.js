@@ -1,4 +1,7 @@
 import {
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
   CREATE_POST,
   EDIT_POST,
   DELETE_POST,
@@ -16,7 +19,10 @@ export const createPost = (user, post) => {
   return {
     type: CREATE_POST,
     post: {
-      user, title, text, category,
+      user,
+      title,
+      text,
+      category,
     },
   };
 };
