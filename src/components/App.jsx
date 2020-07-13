@@ -1,10 +1,10 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import ConnectedPostList from '../containers/ConnectedPostList';
-import ConnectedFilterList from '../containers/ConnectedFilterList';
 import ConnectedLoading from '../containers/ConnectedLoading';
 import ConnectedErrorMessage from '../containers/ConnectedErrorMessage';
 import ConnectedHeader from '../containers/ConnectedHeader';
+import ConnectedRouter from '../containers/ConnectedRouter';
+import ConnectedNavigation from '../containers/ConnectedNavigation';
 
 const App = () => (
   <div>
@@ -15,13 +15,13 @@ const App = () => (
     <div>
       <ConnectedErrorMessage />
     </div>
-    <div><ConnectedHeader /></div>
     <div>
-      <ConnectedFilterList />
+      <ConnectedNavigation />
     </div>
     <div>
-      <ConnectedPostList />
+      <ConnectedHeader />
     </div>
+    <ConnectedRouter />
   </div>
 );
 
