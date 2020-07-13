@@ -1,28 +1,33 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ConnectedLoading from '../containers/ConnectedLoading';
 import ConnectedErrorMessage from '../containers/ConnectedErrorMessage';
 import ConnectedHeader from '../containers/ConnectedHeader';
-import ConnectedRouter from '../containers/ConnectedRouter';
 import ConnectedNavigation from '../containers/ConnectedNavigation';
+import MainPage from './pages/MainPage';
+import AboutPage from './pages/AboutPage';
 
 const App = () => (
-  <div>
-    <h1>React/Redux blog app</h1>
+  <Router>
     <div>
-      <ConnectedLoading />
+      <h1>React/Redux blog app</h1>
+      <div>
+        <ConnectedLoading />
+      </div>
+      <div>
+        <ConnectedErrorMessage />
+      </div>
+      <div>
+        <ConnectedNavigation />
+      </div>
+      <div>
+        <ConnectedHeader />
+      </div>
+      <Route exact path="/" component={MainPage} />
+      <Route path="/about" component={AboutPage} />
     </div>
-    <div>
-      <ConnectedErrorMessage />
-    </div>
-    <div>
-      <ConnectedNavigation />
-    </div>
-    <div>
-      <ConnectedHeader />
-    </div>
-    <ConnectedRouter />
-  </div>
+  </Router>
 );
 
 export default hot(App);

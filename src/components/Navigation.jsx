@@ -1,31 +1,21 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const isClickable = (route, currentRoute) => (route === currentRoute);
+const activeLink = {
+  textDecoration: 'none',
+  color: 'black',
+};
 
-const Navigation = ({ navigate, route }) => (
+const Navigation = () => (
   <div>
-    <button
-      type="button"
-      disabled={isClickable('main', route)}
-      onClick={() => navigate('main')}
-    >
+    <NavLink to="/" exact activeStyle={activeLink}>
       main
-    </button>
+    </NavLink>
     {' - '}
-    <button
-      type="button"
-      disabled={isClickable('about', route)}
-      onClick={() => navigate('about')}
-    >
+    <NavLink to="/about" activeStyle={activeLink}>
       about
-    </button>
+    </NavLink>
   </div>
 );
 
 export default Navigation;
-
-Navigation.propTypes = {
-  navigate: PropTypes.string.isRequired,
-  route: PropTypes.string.isRequired,
-};
