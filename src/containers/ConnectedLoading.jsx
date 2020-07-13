@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import Loading from '../components/Loading';
 
 const mapStateToProps = (state) => {
@@ -15,6 +17,8 @@ const mapStateToProps = (state) => {
   return { isLoading };
 };
 
-const ConnectedLoading = connect(mapStateToProps)(Loading);
+const ConnectedLoading = withRouter(
+  connect(mapStateToProps)(Loading),
+);
 
 export default ConnectedLoading;

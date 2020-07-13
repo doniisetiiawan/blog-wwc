@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Header from '../components/Header';
 
@@ -6,6 +7,6 @@ const mapStateToProps = (state) => ({
   session: state.session,
 });
 
-const ConnectedHeader = connect(mapStateToProps)(Header);
+const ConnectedHeader = withRouter(connect(mapStateToProps)(Header));
 
 export default ConnectedHeader;
