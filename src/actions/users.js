@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import {
   CREATE_USER_FAILURE,
   CREATE_USER_REQUEST,

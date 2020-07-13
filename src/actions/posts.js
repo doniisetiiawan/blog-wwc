@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import {
   CREATE_POST_FAILURE,
   CREATE_POST_REQUEST,
